@@ -90,12 +90,6 @@ if __name__ == '__main__':
         #     print('saving the model at the end of epoch %d, iters %d' % (epoch, total_iters))
         #     model.save_networks('latest')
         #     model.save_networks(epoch)
-
-        visuals = model.get_current_visuals()                 
-        for label, image in visuals.items():
-            image_numpy = util.tensor2im(image)
-            path = os.path.join(res_folder, f'{epoch}_{label}.jpg')
-            util.save_image(image_numpy, path)
         
         print('End of epoch %d / %d \t Time Taken: %d sec' % (epoch, opt.n_epochs + opt.n_epochs_decay, time.time() - epoch_start_time))
         model.update_learning_rate()                     # update learning rates at the end of every epoch.
