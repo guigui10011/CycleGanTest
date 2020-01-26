@@ -28,6 +28,8 @@ if __name__ == '__main__':
 
     opt.dataset_name = 'cene'
     opt.preprocess = 'crop'
+    opt.checkpoints_dir = '/content/gdrive/My Drive/Colab saves/'
+
     # opt.crop_size = 
     print(opt)
     exit()
