@@ -26,13 +26,14 @@ from models import create_model
 if __name__ == '__main__':
     opt = TrainOptions().parse()   # get training options
 
+    # B : Cene
+
     opt.dataset_name = 'cene'
     opt.preprocess = 'crop'
     opt.checkpoints_dir = '/content/gdrive/My Drive/Colab saves/'
+    opt.crop_size = 256
 
-    # opt.crop_size = 
-    print(opt)
-    exit()
+    opt.save_epoch_freq = 500
 
     dataset = create_dataset(opt)  # create a dataset given opt.dataset_mode and other options
     dataset_size = len(dataset)    # get the number of images in the dataset.
@@ -68,13 +69,13 @@ if __name__ == '__main__':
             if total_iters % opt.save_latest_freq == 0:   # cache our latest model every <save_latest_freq> iterations
                 print('saving the latest model (epoch %d, total_iters %d)' % (epoch, total_iters))
                 save_suffix = 'iter_%d' % total_iters if opt.save_by_iter else 'latest'
-                model.save_networks(save_suffix)
+                model.save_networks('latest')
 
             iter_data_time = time.time()
-        if epoch % opt.save_epoch_freq == 0:              # cache our model every <save_epoch_freq> epochs
-            print('saving the model at the end of epoch %d, iters %d' % (epoch, total_iters))
-            model.save_networks('latest')
-            model.save_networks(epoch)
+        # if epoch % opt.save_epoch_freq == 0:              # cache our model every <save_epoch_freq> epochs
+        #     print('saving the model at the end of epoch %d, iters %d' % (epoch, total_iters))
+        #     model.save_networks('latest')
+        #     model.save_networks(epoch)
 
         print('End of epoch %d / %d \t Time Taken: %d sec' % (epoch, opt.n_epochs + opt.n_epochs_decay, time.time() - epoch_start_time))
         model.update_learning_rate()                     # update learning rates at the end of every epoch.
