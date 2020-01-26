@@ -34,7 +34,7 @@ if __name__ == '__main__':
     opt.dataset_mode = 'cene'
     opt.name = '2_img'
     opt.preprocess = 'crop_and_resize'
-    opt.checkpoints_dir = '/content/gdrive/My Drive/Colab saves/ckpts_2imgs'
+    opt.checkpoints_dir = '/content/gdrive/My Drive/Colab saves/ckpts'
     res_folder = '/content/gdrive/My Drive/Colab saves/Cycle_res_2imgs/'
     opt.crop_size = 256
     opt.load_size = 256
