@@ -22,6 +22,7 @@ import time
 from options.train_options import TrainOptions
 from data import create_dataset
 from models import create_model
+from util import util
 
 if __name__ == '__main__':
     opt = TrainOptions().parse()   # get training options
@@ -32,10 +33,12 @@ if __name__ == '__main__':
     opt.dataset_mode = 'cene'
     opt.preprocess = 'crop_and_resize'
     opt.checkpoints_dir = '/content/gdrive/My Drive/Colab saves/'
+    res_folder = '/content/gdrive/My Drive/Colab saves/Cycle_res/'
     opt.crop_size = 256
     opt.load_size = 256
 
     opt.save_epoch_freq = 500
+    opt.save_latest_freq = 500
 
     dataset = create_dataset(opt)  # create a dataset given opt.dataset_mode and other options
     dataset_size = len(dataset)    # get the number of images in the dataset.
@@ -63,6 +66,12 @@ if __name__ == '__main__':
             if total_iters % opt.display_freq == 0:   # display images on visdom and save images to a HTML file
                 save_result = total_iters % opt.update_html_freq == 0
                 model.compute_visuals()
+
+                visuals = model.get_current_visuals()                 
+                for label, image in visuals.items():
+                    image_numpy = util.tensor2im(image)
+                    path = os.path.join(res_folder, f'{epoch}_{total_iters}_{label}.jpg')
+                    util.save_image(image_numpy, path)
 
             if total_iters % opt.print_freq == 0:    # print training losses and save logging information to the disk
                 losses = model.get_current_losses()
