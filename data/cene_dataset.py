@@ -40,11 +40,6 @@ class CeneDataset(BaseDataset):
         self.transform_A = get_transform(self.opt, grayscale=(input_nc == 1), A=True)
         self.transform_B = get_transform(self.opt, grayscale=(output_nc == 1))
 
-        print(self.transform_A)
-        print(self.transform_B)
-
-        exit()
-
     def __getitem__(self, index):
         """Return a data point and its metadata information.
 

@@ -33,6 +33,7 @@ if __name__ == '__main__':
     opt.preprocess = 'crop_and_resize'
     opt.checkpoints_dir = '/content/gdrive/My Drive/Colab saves/'
     opt.crop_size = 256
+    opt.load_size = 256
 
     opt.save_epoch_freq = 500
 
