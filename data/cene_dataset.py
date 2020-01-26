@@ -41,7 +41,7 @@ class CeneDataset(BaseDataset):
         self.transform_B = get_transform(self.opt, grayscale=(output_nc == 1))
 
         print(self.A_size)
-        prin(self.B_size)
+        print(self.B_size)
         print(self.B_paths)
 
     def __getitem__(self, index):
