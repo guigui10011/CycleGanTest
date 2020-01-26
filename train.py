@@ -32,14 +32,14 @@ if __name__ == '__main__':
 
     # opt.dataset_name = 'cene'
     opt.dataset_mode = 'cene'
-    opt.name = 'only_1_img'
+    opt.name = '2_img'
     opt.preprocess = 'crop_and_resize'
-    opt.checkpoints_dir = '/content/gdrive/My Drive/Colab saves/ckpts'
-    res_folder = '/content/gdrive/My Drive/Colab saves/Cycle_res/'
+    opt.checkpoints_dir = '/content/gdrive/My Drive/Colab saves/ckpts_2imgs'
+    res_folder = '/content/gdrive/My Drive/Colab saves/Cycle_res_2imgs/'
     opt.crop_size = 256
     opt.load_size = 256
 
-    opt.save_epoch_freq = 15
+    opt.save_epoch_freq = 20
     opt.save_latest_freq = 500
 
     dataset = create_dataset(opt)  # create a dataset given opt.dataset_mode and other options
