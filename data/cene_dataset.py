@@ -38,11 +38,12 @@ class CeneDataset(BaseDataset):
         input_nc = self.opt.output_nc if btoA else self.opt.input_nc       # get the number of channels of input image
         output_nc = self.opt.input_nc if btoA else self.opt.output_nc      # get the number of channels of output image
         self.transform_A = get_transform(self.opt, grayscale=(input_nc == 1), A=True)
+        self.transform_B = get_transform(self.opt, grayscale=(output_nc == 1))
+
         print(self.transform_A)
         print(self.transform_B)
 
         exit()
-        self.transform_B = get_transform(self.opt, grayscale=(output_nc == 1))
 
     def __getitem__(self, index):
         """Return a data point and its metadata information.
