@@ -32,7 +32,7 @@ if __name__ == '__main__':
 
     # opt.dataset_name = 'cene'
     opt.dataset_mode = 'cene'
-    opt.name = '1_img'
+    opt.name = 'only_1_img'
     opt.preprocess = 'crop_and_resize'
     opt.checkpoints_dir = '/content/gdrive/My Drive/Colab saves/ckpts'
     res_folder = '/content/gdrive/My Drive/Colab saves/Cycle_res/'
