@@ -84,6 +84,16 @@ gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
 # detect faces in the grayscale image
 rects = detector(gray, 1)
 
+def get_shape_pos(shape, idx1, idx2):
+
+	r1, c1 = shape[idx1]
+	r2, c2 = shape[idx2]
+
+	r = (r1 + r2) / 2
+	c = (c1 + c2) / 2
+
+	return r, c
+
 
 # loop over the face detections
 for (i, rect) in enumerate(rects):
@@ -91,8 +101,22 @@ for (i, rect) in enumerate(rects):
 	# convert the landmark (x, y)-coordinates to a NumPy array
 	shape = predictor(gray, rect)
 	shape = face_utils.shape_to_np(shape)
-	print(shape)
-	# loop over the face parts individually
+	
+	oeil_g = get_shape_pos(37, 40)             # 37-40  
+
+	oeil_d = get_shape_pos(43, 46)             # 43-46
+
+	bouche =  get_shape_pos(49, 55)             # 49 - 55   # 52 - 58
+
+	print(oeil_g, oeil_d, bouche)
+
+	radius = 20
+	color = (255, 255, 0)  
+	thickness = 2
+	image = cv2.circle(image, oeil_g, radius, (255, 255, 0)  , thickness) 
+	image = cv2.circle(image, oeil_d, radius, (255, 0, 0)  , thickness) 
+	image = cv2.circle(image, bouche, radius, (255, 255, 0)  , thickness) 
+	"""# loop over the face parts individually
 	for (name, (i, j)) in face_utils.FACIAL_LANDMARKS_IDXS.items():
 		# clone the original image so we can draw on it, then
 		# display the name of the face part on the image
@@ -112,10 +136,10 @@ for (i, rect) in enumerate(rects):
 		# show the particular face part
 		# cv2.imshow("ROI", roi)
 		# cv2.imshow("Image", clone)
-		# cv2.waitKey(0)
+		# cv2.waitKey(0)"""
 
 # visualize all facial landmarks with a transparent overlay
-cv2.imwrite(os.path.join(args['outfolder'],'facial_recog.jpg'),roi)
+cv2.imwrite(os.path.join(args['outfolder'],'facial_recog.jpg'),image)
 output = face_utils.visualize_facial_landmarks(image, shape)
 cv2.imwrite(os.path.join(args['outfolder'],'facial_recog.jpg'),output)
 # cv2.imshow("Image", output)
