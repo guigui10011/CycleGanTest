@@ -86,6 +86,7 @@ rects = detector(gray, 1)
 
 
 # loop over the face detections
+print(len(rects))
 for (i, rect) in enumerate(rects):
 	# determine the facial landmarks for the face region, then
 	# convert the landmark (x, y)-coordinates to a NumPy array
