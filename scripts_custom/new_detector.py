@@ -6,6 +6,7 @@ import imutils
 import dlib
 import cv2
 import sys
+import os
 from collections import OrderedDict
 
 # define a dictionary that maps the indexes of the facial
