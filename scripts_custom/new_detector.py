@@ -102,11 +102,11 @@ for (i, rect) in enumerate(rects):
 	shape = predictor(gray, rect)
 	shape = face_utils.shape_to_np(shape)
 	
-	oeil_g = get_shape_pos(37, 40)             # 37-40  
+	oeil_g = get_shape_pos(shape, 37, 40)             # 37-40  
 
-	oeil_d = get_shape_pos(43, 46)             # 43-46
+	oeil_d = get_shape_pos(shape, 43, 46)             # 43-46
 
-	bouche =  get_shape_pos(49, 55)             # 49 - 55   # 52 - 58
+	bouche =  get_shape_pos(shape, 49, 55)             # 49 - 55   # 52 - 58
 
 	print(oeil_g, oeil_d, bouche)
 
