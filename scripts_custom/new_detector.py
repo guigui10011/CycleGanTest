@@ -86,13 +86,13 @@ rects = detector(gray, 1)
 
 def get_shape_pos(shape, idx1, idx2):
 
-	r1, c1 = shape[idx1]
-	r2, c2 = shape[idx2]
+	r1, c1 = shape[int(idx1)]
+	r2, c2 = shape[int(idx2)]
 
 	r = (r1 + r2) / 2
 	c = (c1 + c2) / 2
 
-	return r, c
+	return int(r), int(c)
 
 
 # loop over the face detections
