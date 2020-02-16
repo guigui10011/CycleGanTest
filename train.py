@@ -32,14 +32,16 @@ if __name__ == '__main__':
 
     # opt.dataset_name = 'cene'
     opt.dataset_mode = 'cene'
-    opt.name = '2_img'
+    
+    opt.name = 'only_1_img_new_crop'
+    res_folder = '/content/gdrive/My Drive/Colab saves/Cycle_res_new_crop/'
+
     opt.preprocess = 'crop_and_resize'
     opt.checkpoints_dir = '/content/gdrive/My Drive/Colab saves/ckpts'
-    res_folder = '/content/gdrive/My Drive/Colab saves/Cycle_res_2imgs/'
     opt.crop_size = 256
     opt.load_size = 256
 
-    opt.save_epoch_freq = 20
+    opt.save_epoch_freq = 5
     opt.save_latest_freq = 500
 
     dataset = create_dataset(opt)  # create a dataset given opt.dataset_mode and other options
@@ -74,9 +76,10 @@ if __name__ == '__main__':
                 t_comp = (time.time() - iter_start_time) / opt.batch_size
 
             if total_iters % 20 == 0:
-                print(total_iters, '/', len(dataset))
+                print(i, '/', len(dataset))
+
             if total_iters % opt.save_latest_freq == 0:   # cache our latest model every <save_latest_freq> iterations
-                print('saving the latest model (epoch %d, total_iters %d)' % (epoch, total_iters))
+                print('saving the latest model (epoch %d, total_iters %d)' % (epoch, i))
                 save_suffix = 'iter_%d' % total_iters if opt.save_by_iter else 'latest'
                 model.save_networks('latest')
 
@@ -87,10 +90,11 @@ if __name__ == '__main__':
                 image_numpy = util.tensor2im(image)
                 path = os.path.join(res_folder, f'{epoch}_{label}.jpg')
                 util.save_image(image_numpy, path)
-        # if epoch % opt.save_epoch_freq == 0:              # cache our model every <save_epoch_freq> epochs
-        #     print('saving the model at the end of epoch %d, iters %d' % (epoch, total_iters))
-        #     model.save_networks('latest')
-        #     model.save_networks(epoch)
+
+        if epoch % opt.save_epoch_freq == 0:              # cache our model every <save_epoch_freq> epochs
+            print('saving the model at the end of epoch %d, iters %d' % (epoch, total_iters))
+            # model.save_networks('latest')
+            model.save_networks(epoch)
         
         print('End of epoch %d / %d \t Time Taken: %d sec' % (epoch, opt.n_epochs + opt.n_epochs_decay, time.time() - epoch_start_time))
         model.update_learning_rate()                     # update learning rates at the end of every epoch.
