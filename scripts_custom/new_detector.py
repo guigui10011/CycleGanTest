@@ -69,7 +69,7 @@ ap.add_argument("-p", "--shape-predictor", required=True,
 	help="path to facial landmark predictor")
 ap.add_argument("-i", "--image", required=True,
 	help="path to input image")
-ap.add_argument("-o", "--out_folder",
+ap.add_argument("-o", "--outfolder",
 	help="outfolder")
 
 args = vars(ap.parse_args())
