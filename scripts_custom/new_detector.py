@@ -113,6 +113,7 @@ for (i, rect) in enumerate(rects):
 		# cv2.waitKey(0)
 
 # visualize all facial landmarks with a transparent overlay
+cv2.imwrite(os.path.join(args['outfolder']),'facial_recog.jpg',image)
 output = face_utils.visualize_facial_landmarks(image, shape)
 cv2.imwrite(os.path.join(args['outfolder']),'facial_recog.jpg',output)
 # cv2.imshow("Image", output)
