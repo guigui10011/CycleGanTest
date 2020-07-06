@@ -5,7 +5,7 @@ from PIL import Image
 import random
 
 
-class CeneDataset(BaseDataset):
+class JojoDataset(BaseDataset):
     """
     This dataset class can load unaligned/unpaired datasets.
 
