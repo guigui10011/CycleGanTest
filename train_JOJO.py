@@ -31,10 +31,10 @@ if __name__ == '__main__':
     # B : Cene
 
     # opt.dataset_name = 'cene'
-    opt.dataset_mode = 'JOJO'
+    opt.dataset_mode = 'jojo'
     
-    opt.name = 'JOJO'
-    res_folder = '/content/gdrive/My Drive/Colab saves/JOJO/'
+    opt.name = 'jojo'
+    res_folder = '/content/gdrive/My Drive/Colab saves/jojo/'
 
     # opt.preprocess = 'crop_and_resize'
     opt.preprocess = 'resize'
